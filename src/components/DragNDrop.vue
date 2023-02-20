@@ -43,9 +43,9 @@ const onAdd = () => {
   <VueFlow v-model="elements">
     <Controls />
     <Panel :position="PanelPosition.TopRight" class="save-restore-controls">
-      <button style="background-color: #33a6b8" @click="onSave">save</button>
-      <button style="background-color: #113285" @click="onRestore">restore</button>
-      <button style="background-color: #6f3381" @click="onAdd">add node</button>
+      <button style="background-color: #33a6b8" @click="onSave">Сохранить</button>
+      <button style="background-color: #113285" @click="onRestore">Взять из Local Storage</button>
+      <button style="background-color: #6f3381" @click="onAdd">Добавить Объект</button>
     </Panel>
   </VueFlow>
 </template>
