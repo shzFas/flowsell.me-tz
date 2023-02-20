@@ -1,15 +1,18 @@
 <script setup>
+import { VueFlow } from '@vue-flow/core'
 import { Panel, PanelPosition, useVueFlow } from '@vue-flow/core'
-
-const flowKey = 'example-flow'
+import { ref } from 'vue'
+import { Controls } from '@vue-flow/controls'
+const flowKey = 'allchanges'
 
 const { nodes, addNodes, setNodes, setEdges, dimensions, setTransform, toObject, addEdges, onConnect } = useVueFlow()
 
 onConnect((params) => addEdges([params]))
+const elements = ref([]);
 
 const onSave = () => {
   localStorage.setItem(flowKey, JSON.stringify(toObject()));
-  console.log(localStorage);
+  console.log(elements);
 }
 
 const onRestore = () => {
@@ -37,9 +40,12 @@ const onAdd = () => {
 </script>
 
 <template>
-  <Panel :position="PanelPosition.TopRight" class="save-restore-controls">
-    <button style="background-color: #33a6b8" @click="onSave">save</button>
-    <button style="background-color: #113285" @click="onRestore">restore</button>
-    <button style="background-color: #6f3381" @click="onAdd">add node</button>
-  </Panel>
+  <VueFlow v-model="elements">
+    <Controls />
+    <Panel :position="PanelPosition.TopRight" class="save-restore-controls">
+      <button style="background-color: #33a6b8" @click="onSave">save</button>
+      <button style="background-color: #113285" @click="onRestore">restore</button>
+      <button style="background-color: #6f3381" @click="onAdd">add node</button>
+    </Panel>
+  </VueFlow>
 </template>
